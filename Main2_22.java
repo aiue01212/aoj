@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main3_11 {
+public class Main2_22 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -12,18 +12,21 @@ public class Main3_11 {
         }
 
         int count = 0;
-        boolean flag = true;
 
-        while (flag) {
-            flag = false;
-            for (int j = N - 1; j >= 1; j--) {
-                if (A[j] < A[j - 1]) {
-                    int tmp = A[j];
-                    A[j] = A[j - 1];
-                    A[j - 1] = tmp;
-                    count++;
-                    flag = true;
+        for (int i = 0; i < N; i++) {
+            int minj = i;
+
+            for (int j = i; j < N; j++) {
+                if (A[j] < A[minj]) {
+                    minj = j;
                 }
+            }
+
+            if (i != minj) {
+                int tmp = A[i];
+                A[i] = A[minj];
+                A[minj] = tmp;
+                count++;
             }
         }
 

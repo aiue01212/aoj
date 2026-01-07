@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main3_13 {
+public class Main2_23 {
 
     static void bubbleSort(String[] C, int N) {
         for (int i = 0; i < N; i++) {
