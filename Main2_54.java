@@ -1,9 +1,9 @@
 import java.util.Scanner;
 
-public class Main2_52 {
+public class Main2_54 {
 
     static final int INFTY = 1_000_000_001;
-    static int count = 0;
+    static long count = 0;
 
     static void merge(int[] A, int left, int mid, int right) {
         int n1 = mid - left;
@@ -25,13 +25,13 @@ public class Main2_52 {
         int i = 0, j = 0;
 
         for (int k = left; k < right; k++) {
-            count++;
             if (L[i] <= R[j]) {
                 A[k] = L[i];
                 i++;
             } else {
                 A[k] = R[j];
                 j++;
+                count += (n1 - i);
             }
         }
     }
@@ -49,20 +49,13 @@ public class Main2_52 {
         Scanner sc = new Scanner(System.in);
 
         int n = sc.nextInt();
-        int[] S = new int[n];
+        int[] A = new int[n];
 
         for (int i = 0; i < n; i++) {
-            S[i] = sc.nextInt();
+            A[i] = sc.nextInt();
         }
 
-        mergeSort(S, 0, n);
-
-        for (int i = 0; i < n; i++) {
-            if (i > 0)
-                System.out.print(" ");
-            System.out.print(S[i]);
-        }
-        System.out.println();
+        mergeSort(A, 0, n);
 
         System.out.println(count);
 
