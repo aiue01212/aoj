@@ -109,6 +109,30 @@ public class Main2_83 {
 
         if (z == -1)
             return;
+
+        if (left[z] != -1 && right[z] != -1) {
+            int y = getSuccessor(z);
+            keys[z] = keys[y];
+            z = y;
+        }
+
+        int child;
+        if (left[z] != -1)
+            child = left[z];
+        else
+            child = right[z];
+
+        if (parent[z] == -1) {
+            root = child;
+        } else if (z == left[parent[z]]) {
+            left[parent[z]] = child;
+        } else {
+            right[parent[z]] = child;
+        }
+
+        if (child != -1) {
+            parent[child] = parent[z];
+        }
     }
 
     static int getSuccessor(int x) {
