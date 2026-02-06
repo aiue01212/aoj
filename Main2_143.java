@@ -1,46 +1,49 @@
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 public class Main2_143 {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
 
-        int H = sc.nextInt();
-        int W = sc.nextInt();
-        sc.nextLine();
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int H = Integer.parseInt(st.nextToken());
+        int W = Integer.parseInt(st.nextToken());
 
-        char[][] field = new char[H][W];
+        char[][] field = new char[H][];
         for (int i = 0; i < H; i++) {
-            field[i] = sc.nextLine().toCharArray();
+            field[i] = br.readLine().toCharArray();
         }
 
-        int R = sc.nextInt();
-        int C = sc.nextInt();
-        sc.nextLine();
+        st = new StringTokenizer(br.readLine());
+        int R = Integer.parseInt(st.nextToken());
+        int C = Integer.parseInt(st.nextToken());
 
-        char[][] pattern = new char[R][C];
+        char[][] pattern = new char[R][];
         for (int i = 0; i < R; i++) {
-            pattern[i] = sc.nextLine().toCharArray();
+            pattern[i] = br.readLine().toCharArray();
         }
 
         for (int i = 0; i <= H - R; i++) {
             for (int j = 0; j <= W - C; j++) {
+
                 boolean match = true;
-                for (int r = 0; r < R; r++) {
+
+                for (int r = 0; r < R && match; r++) {
                     for (int c = 0; c < C; c++) {
                         if (field[i + r][j + c] != pattern[r][c]) {
                             match = false;
                             break;
                         }
                     }
-                    if (!match)
-                        break;
                 }
+
                 if (match) {
-                    System.out.println(i + " " + j);
+                    sb.append(i).append(' ').append(j).append('\n');
                 }
             }
         }
 
-        sc.close();
+        System.out.print(sb.toString());
     }
 }
